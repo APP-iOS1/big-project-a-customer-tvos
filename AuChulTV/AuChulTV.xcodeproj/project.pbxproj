@@ -13,6 +13,7 @@
 		163ECD4529629A3000ABCD9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 163ECD4429629A3000ABCD9F /* Preview Assets.xcassets */; };
 		163ECD4D29629A7000ABCD9F /* NotebookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECD4C29629A7000ABCD9F /* NotebookItem.swift */; };
 		163ECD4F2962BCC400ABCD9F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECD4E2962BCC400ABCD9F /* DetailView.swift */; };
+		163ECD512962C76500ABCD9F /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECD502962C76400ABCD9F /* PurchaseView.swift */; };
 		CA650FB62962A3680034C4C0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA650FB52962A3680034C4C0 /* HomeView.swift */; };
 		CA650FB82962A3B90034C4C0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA650FB72962A3B90034C4C0 /* SearchView.swift */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 		163ECD4429629A3000ABCD9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		163ECD4C29629A7000ABCD9F /* NotebookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebookItem.swift; sourceTree = "<group>"; };
 		163ECD4E2962BCC400ABCD9F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = AuChulTV/DetailView.swift; sourceTree = SOURCE_ROOT; };
+		163ECD502962C76400ABCD9F /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		CA650FB52962A3680034C4C0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CA650FB72962A3B90034C4C0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -61,6 +63,7 @@
 			children = (
 				163ECD4B29629A5200ABCD9F /* Model */,
 				163ECD3D29629A2E00ABCD9F /* AuChulTVApp.swift */,
+				163ECD502962C76400ABCD9F /* PurchaseView.swift */,
 				163ECD4E2962BCC400ABCD9F /* DetailView.swift */,
 				163ECD3F29629A2E00ABCD9F /* ContentView.swift */,
 				CA650FB72962A3B90034C4C0 /* SearchView.swift */,
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				163ECD512962C76500ABCD9F /* PurchaseView.swift in Sources */,
 				CA650FB82962A3B90034C4C0 /* SearchView.swift in Sources */,
 				163ECD4F2962BCC400ABCD9F /* DetailView.swift in Sources */,
 				163ECD4029629A2E00ABCD9F /* ContentView.swift in Sources */,

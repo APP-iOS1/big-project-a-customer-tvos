@@ -11,51 +11,59 @@ import SwiftUI
 struct HomeView: View {
     @State var target: NotebookItem = NotebookItems[0]
     @State private var isVideoShowing: Bool = false
+    @State private var isPurchaseShowing: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("상품 정보")
-                .font(.title3)
-            VStack {
-                Text("\(target.NotebookTitles)")
-                    .font(.title)
-                HStack {
-                    Spacer()
-                    VStack {
-                        Text("\(target.NotebookPrices)")
-                            .font(.title2)
-                        HStack {
-                            Button {
-                                print("구매하기")
-                            } label: {
-                                Text("구매하기")
-                            }
-                            Button {
-                                print("장바구니")
-                            } label: {
-                                Text("장바구니")
-                            }
-                            Button {
-                                print("영상보기")
-                                isVideoShowing.toggle()
-                            } label: {
-                                Text("영상보기")
-                            }
-                            .sheet(isPresented: $isVideoShowing) {
-                                DetailView()
+        NavigationStack {
+            VStack(alignment: .leading) {
+                Text("상품 정보")
+                    .font(.title3)
+                VStack {
+                    Text("\(target.NotebookTitles)")
+                        .font(.title)
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Text("\(target.NotebookPrices)")
+                                .font(.title2)
+                            HStack {
+                                
+                                Button {
+                                    isPurchaseShowing.toggle()
+                                } label: {
+                                    Text("구매하기")
+                                }
+                                
+                                Button {
+                                    print("장바구니")
+                                } label: {
+                                    Text("장바구니")
+                                }
+                                Button {
+                                    print("영상보기")
+                                    isVideoShowing.toggle()
+                                } label: {
+                                    Text("영상보기")
+                                }
+                                .sheet(isPresented: $isVideoShowing) {
+                                    DetailView()
+                                }
+                                .sheet(isPresented: $isPurchaseShowing) {
+                                    PurchaseView(target: $target)
+                                }
                             }
                         }
+                        Spacer()
                     }
-                    Spacer()
-                }
-                ScrollView{
-                    SectionScrollView(target: $target, title: "현재 가장 HOT한 노트북")
-                    SectionScrollView(target: $target, title: "최신 노트북")
-                    SectionScrollView(target: $target, title: "동훈's Pick 노트북")
+                    ScrollView{
+                        SectionScrollView(target: $target, title: "현재 가장 HOT한 노트북")
+                        SectionScrollView(target: $target, title: "최신 노트북")
+                        SectionScrollView(target: $target, title: "동훈's Pick 노트북")
+                    }
                 }
             }
+            .padding(.leading, 50)
         }
-        .padding(.leading, 50)
     }
 }
 

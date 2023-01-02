@@ -13,6 +13,7 @@ struct DetailView: View {
     
     var body: some View {
         VideoPlayer(player: player)
+            .edgesIgnoringSafeArea(.all)
             .frame(width: .infinity, height: .infinity, alignment: .center)
             .onAppear {
                 addObserver() // 1

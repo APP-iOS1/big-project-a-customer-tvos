@@ -15,21 +15,27 @@ struct PurchaseView: View {
     
     
     var body: some View {
-        Image(uiImage: generateQRCode(from: "\(target.NotebookTitles)"))
-            .resizable()
-            .scaledToFit()
-            .frame(width: 200, height: 200)
+        VStack {
+            
+            Text("\(target.NotebookTitles)에 관심이 있으신가요?")
+                .font(.title3)
+                .bold()
+            Text("제품을 구입하시려면, 아래 QR 코드를 인식시켜 주세요.")
+                .font(.subheadline)
+            Image(uiImage: UIImage(data: getQRCodeDate(text: target.NotebookTitles)!)!)
+                .resizable()
+                .frame(width: 600, height: 600)
+        }
     }
     
-    func generateQRCode(from string: String) -> UIImage {
-        filter.message = Data(string.utf8)
-
-        if let outputImage = filter.outputImage {
-            if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
-                return UIImage(cgImage: cgimg)
-            }
-        }
-
-        return UIImage(systemName: "xmark.circle") ?? UIImage()
+    func getQRCodeDate(text: String) -> Data? {
+        guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
+        let data = text.data(using: .ascii, allowLossyConversion: false)
+        filter.setValue(data, forKey: "inputMessage")
+        guard let ciimage = filter.outputImage else { return nil }
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledCIImage = ciimage.transformed(by: transform)
+        let uiimage = UIImage(ciImage: scaledCIImage)
+        return uiimage.pngData()!
     }
 }

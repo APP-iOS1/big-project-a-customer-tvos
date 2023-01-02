@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var target: NotebookItem = NotebookItems[0]
+    @State private var isVideoShowing: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,6 +35,15 @@ struct HomeView: View {
                             } label: {
                                 Text("장바구니")
                             }
+                            Button {
+                                print("영상보기")
+                                isVideoShowing.toggle()
+                            } label: {
+                                Text("영상보기")
+                            }
+                            .sheet(isPresented: $isVideoShowing) {
+                                DetailView()
+                            }
                         }
                     }
                     Spacer()
@@ -41,12 +51,11 @@ struct HomeView: View {
                 ScrollView{
                     SectionScrollView(target: $target, title: "현재 가장 HOT한 노트북")
                     SectionScrollView(target: $target, title: "최신 노트북")
-                        .focusSection()
                     SectionScrollView(target: $target, title: "동훈's Pick 노트북")
                 }
             }
         }
-        .padding(.leading,50)
+        .padding(.leading, 50)
     }
 }
 

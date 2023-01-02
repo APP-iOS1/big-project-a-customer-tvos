@@ -39,9 +39,10 @@ struct HomeView: View {
                     Spacer()
                 }
                 ScrollView{
-                    SectionScrollView(title: "현재 가장 HOT한 노트북")
-                    SectionScrollView(title: "최신 노트북")
-                    SectionScrollView(title: "동훈's Pick 노트북")
+                    SectionScrollView(target: $target, title: "현재 가장 HOT한 노트북")
+                    SectionScrollView(target: $target, title: "최신 노트북")
+                        .focusSection()
+                    SectionScrollView(target: $target, title: "동훈's Pick 노트북")
                 }
             }
         }
@@ -50,7 +51,7 @@ struct HomeView: View {
 }
 
 struct SectionScrollView: View{
-    @State var target: NotebookItem = NotebookItems[0]
+    @Binding var target: NotebookItem
     var title: String = ""
     
     var body: some View{

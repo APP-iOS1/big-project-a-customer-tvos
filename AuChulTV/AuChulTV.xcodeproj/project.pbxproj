@@ -18,6 +18,9 @@
 		163ECD562963BB5500ABCD9F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 163ECD552963BB5500ABCD9F /* FirebaseAuth */; };
 		163ECD5C2963BB5500ABCD9F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 163ECD5B2963BB5500ABCD9F /* FirebaseFirestore */; };
 		163ECD5E2963BB5500ABCD9F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 163ECD5D2963BB5500ABCD9F /* FirebaseFirestoreSwift */; };
+		163ECD602963C65000ABCD9F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 163ECD5F2963C65000ABCD9F /* GoogleService-Info.plist */; };
+		163ECD622963C76F00ABCD9F /* StoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECD612963C76F00ABCD9F /* StoreInfo.swift */; };
+		163ECD642963C79B00ABCD9F /* ItemInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECD632963C79B00ABCD9F /* ItemInfo.swift */; };
 		CA650FB62962A3680034C4C0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA650FB52962A3680034C4C0 /* HomeView.swift */; };
 		CA650FB82962A3B90034C4C0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA650FB72962A3B90034C4C0 /* SearchView.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +35,9 @@
 		163ECD4E2962BCC400ABCD9F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailView.swift; path = AuChulTV/DetailView.swift; sourceTree = SOURCE_ROOT; };
 		163ECD502962C76400ABCD9F /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		163ECD522963B70D00ABCD9F /* TmpStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpStore.swift; sourceTree = "<group>"; };
+		163ECD5F2963C65000ABCD9F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		163ECD612963C76F00ABCD9F /* StoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfo.swift; sourceTree = "<group>"; };
+		163ECD632963C79B00ABCD9F /* ItemInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfo.swift; sourceTree = "<group>"; };
 		CA650FB52962A3680034C4C0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CA650FB72962A3B90034C4C0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +75,7 @@
 		163ECD3C29629A2E00ABCD9F /* AuChulTV */ = {
 			isa = PBXGroup;
 			children = (
+				163ECD5F2963C65000ABCD9F /* GoogleService-Info.plist */,
 				163ECD4B29629A5200ABCD9F /* Model */,
 				163ECD3D29629A2E00ABCD9F /* AuChulTVApp.swift */,
 				163ECD502962C76400ABCD9F /* PurchaseView.swift */,
@@ -95,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				163ECD4C29629A7000ABCD9F /* NotebookItem.swift */,
+				163ECD612963C76F00ABCD9F /* StoreInfo.swift */,
+				163ECD632963C79B00ABCD9F /* ItemInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +176,7 @@
 			files = (
 				163ECD4529629A3000ABCD9F /* Preview Assets.xcassets in Resources */,
 				163ECD4229629A3000ABCD9F /* Assets.xcassets in Resources */,
+				163ECD602963C65000ABCD9F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +191,8 @@
 				CA650FB82962A3B90034C4C0 /* SearchView.swift in Sources */,
 				163ECD4F2962BCC400ABCD9F /* DetailView.swift in Sources */,
 				163ECD4029629A2E00ABCD9F /* ContentView.swift in Sources */,
+				163ECD642963C79B00ABCD9F /* ItemInfo.swift in Sources */,
+				163ECD622963C76F00ABCD9F /* StoreInfo.swift in Sources */,
 				CA650FB62962A3680034C4C0 /* HomeView.swift in Sources */,
 				163ECD3E29629A2E00ABCD9F /* AuChulTVApp.swift in Sources */,
 				163ECD4D29629A7000ABCD9F /* NotebookItem.swift in Sources */,

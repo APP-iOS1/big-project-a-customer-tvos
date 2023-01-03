@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class ProductStore: ObservableObject {
+    @Published var products: 
+}

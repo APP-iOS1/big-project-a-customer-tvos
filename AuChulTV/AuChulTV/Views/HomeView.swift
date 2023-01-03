@@ -20,54 +20,54 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("상품 정보")
-                    .font(.title3)
-                VStack {
-                    Text("\(target.itemName)")
-                        .font(.title)
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Text("\(target.price)")
-                                .font(.title2)
-                            HStack {
-                                
-                                Button {
-                                    isPurchaseShowing.toggle()
-                                } label: {
-                                    Text("구매하기")
-                                }
-                                
-                                Button {
-                                    print("장바구니")
-                                } label: {
-                                    Text("장바구니")
-                                }
-                                Button {
-                                    print("영상보기")
-                                    isVideoShowing.toggle()
-                                } label: {
-                                    Text("영상보기")
-                                }
-                                .sheet(isPresented: $isVideoShowing) {
-                                    DetailView()
-                                }
-                                .sheet(isPresented: $isPurchaseShowing) {
-                                    PurchaseView(target: $target)
-                                }
-                            }
-                        }
-                        Spacer()
-                    }
-                    
-                    
-                    ScrollView{
-                        SectionScrollView(productStore: productStore, target: $target, title: "현재 가장 찌릿한 전자 제품")
-                        //                        SectionScrollView(target: $target, title: "최신 노트북")
-                        //                        SectionScrollView(target: $target, title: "동훈's Pick 노트북")
-                        //SectionScrollView2(productStore: productStore, target: $target)
-                    }
+                
+                ScrollView{
+                    SectionScrollView(productStore: productStore, target: $target, title: "현재 가장 찌릿한 전자 제품")
+                    //                        SectionScrollView(target: $target, title: "최신 노트북")
+                    //                        SectionScrollView(target: $target, title: "동훈's Pick 노트북")
+                    //SectionScrollView2(productStore: productStore, target: $target)
                 }
+//                Text("상품 정보")
+//                    .font(.title3)
+//                VStack {
+//                    Text("\(target.itemName)")
+//                        .font(.title)
+//                    HStack {
+//                        Spacer()
+//                        VStack {
+//                            Text("\(Int(target.price)) 원")
+//                                .font(.title2)
+//                            HStack {
+//                                
+//                                Button {
+//                                    isPurchaseShowing.toggle()
+//                                } label: {
+//                                    Text("구매하기")
+//                                }
+//                                
+//                                Button {
+//                                    print("장바구니")
+//                                } label: {
+//                                    Text("장바구니")
+//                                }
+//                                Button {
+//                                    print("영상보기")
+//                                    isVideoShowing.toggle()
+//                                } label: {
+//                                    Text("영상보기")
+//                                }
+//                                .sheet(isPresented: $isVideoShowing) {
+//                                    DetailView()
+//                                }
+//                                .sheet(isPresented: $isPurchaseShowing) {
+//                                    PurchaseView(target: $target)
+//                                }
+//                            }
+//                        }
+//                        Spacer()
+//                    }
+//                    
+//                }
             }
             .padding(.leading, 50)
             .onAppear{
@@ -92,11 +92,19 @@ struct SectionScrollView: View{
             ScrollView(.horizontal) {
                 HStack() {
                     ForEach(productStore.products, id: \.itemUid) { product in
-                        Button(action: {
+                        VStack {
+                            Button(action: {
+                                
+                            }) {
+                                VStack {
+                                    FocusableRectangle(target: $target, itemTarget: product)
+                                    
+                                }
+                            }.buttonStyle(CardButtonStyle())
                             
-                        }) {
-                            FocusableRectangle(target: $target, itemTarget: product)
-                        }.buttonStyle(CardButtonStyle())
+                            Text("\(product.itemName)")
+                            Text("\(Int(product.price)) 원")
+                        }
                     }
                 }.padding(40)
             }
@@ -119,23 +127,28 @@ struct FocusableRectangle: View {
         //            .font(.title3)
         //
         if itemTarget.itemImage.first != "" {
-            AsyncImage(url: URL(string: itemTarget.itemImage.first!)) { image in
-                image
-                    .resizable()
-                    .renderingMode(.original)
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                ProgressView()
-            }
-            .frame(width: defaultWidth, height: defaultHeight)
-            .clipped()
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .onChange(of: isFocused, perform: { value in
-                if value {
-                    target = itemTarget
+            VStack(alignment: .leading, spacing: 10) {
+                AsyncImage(url: URL(string: itemTarget.itemImage.first!)) { image in
+                    image
+                        .resizable()
+                        .renderingMode(.original)
+                        .aspectRatio(contentMode: .fit)
+                    
+                } placeholder: {
+                    ProgressView()
                 }
-            })
+                .frame(width: defaultWidth, height: defaultHeight)
+                .clipped()
+                //                .cornerRadius(10)
+                //                .shadow(radius: 5)
+                .onChange(of: isFocused, perform: { value in
+                    if value {
+                        target = itemTarget
+                    }
+                })
+            }
+            .background(.white)
+            
         } else {
             Image("zrs")
                 .resizable()
@@ -165,6 +178,7 @@ struct FocusableRectangle: View {
         //                    target = itemTarget
         //                }
         //            })
+
     }
 }
 

@@ -13,6 +13,9 @@ struct HomeView: View {
     @State private var isVideoShowing: Bool = false
     @State private var isPurchaseShowing: Bool = false
     
+    
+    @StateObject var productStore: ProductStore = ProductStore()
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
@@ -55,6 +58,13 @@ struct HomeView: View {
                         }
                         Spacer()
                     }
+                    
+                    List{
+                        ForEach(productStore.products, id: \.itemCategory) { product in
+                            Text("\(product.itemUid)")
+                        }
+                    }
+    
                     ScrollView{
                         SectionScrollView(target: $target, title: "현재 가장 HOT한 노트북")
                         SectionScrollView(target: $target, title: "최신 노트북")
@@ -63,6 +73,9 @@ struct HomeView: View {
                 }
             }
             .padding(.leading, 50)
+            .onAppear{
+                productStore.fetchPosts()
+            }
         }
     }
 }

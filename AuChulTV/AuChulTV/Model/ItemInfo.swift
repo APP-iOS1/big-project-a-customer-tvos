@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ItemInfo: Codable {
+struct ItemInfo: Codable{
+    
     var itemUid: String
     var storeId: String
     var itemName: String
@@ -16,4 +17,5 @@ struct ItemInfo: Codable {
     var itemAllOption: ItemOptions
     var itemImage: [String]
     var price: Double
+    
 }

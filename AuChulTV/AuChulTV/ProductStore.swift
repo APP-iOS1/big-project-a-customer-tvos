@@ -30,23 +30,22 @@ class ProductStore: ObservableObject {
                         let docData = document.data()
                         
                         let id: String = document.documentID
-                        let itemName: String = docData["ItemData"] as? String ?? "Mac"
+                        let itemName: String = docData["itemName"] as? String ?? "Mac"
                         let itemCategory: String = docData["itemCategory"] as? String ?? "NoteBook"
                         let itemAmount: String = docData["itemAmount"] as? String ?? "0"
-                        let itemImage: String = docData["itemImage"] as? String ?? ""
-                        let price: String = docData["itemImage"] as? String ?? "NoteBook"
+                        let itemImage: [String] = docData["itemImage"] as? [String] ?? [""]
+                        let price: String = docData["price"] as? String ?? "0"
                         
                         
-                        let product: ItemInfo = ItemInfo(itemUid: id, storeId: "", itemName: itemName, itemCategory: itemCategory, itemAmount: Int(itemAmount) ?? 0, itemAllOption: ItemOptions(itemOptions: ["":[""]]), itemImage: [itemImage], price: Double(price) ?? 0)
+                        let product: ItemInfo = ItemInfo(itemUid: id, storeId: "", itemName: itemName, itemCategory: itemCategory, itemAmount: Int(itemAmount) ?? 0, itemAllOption: ItemOptions(itemOptions: ["":[""]]), itemImage: itemImage, price: Double(price) ?? 0)
+                        
+                        print("\(product.itemName)")
                         
                         self.products.append(product)
                     }
                     
                 }
-                print(self.products)
-                
-                
-                
+                        
             }
         
     }

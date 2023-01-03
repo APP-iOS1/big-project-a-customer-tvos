@@ -27,7 +27,11 @@ struct SearchView: View {
                             
                     }.buttonStyle(CardButtonStyle())
                 }
-            }.padding(40)
+            }
+               .padding(40)
+                .onAppear{
+                    productStore.fetchPosts()
+                }
         }
         .searchable(text: $search)
     }

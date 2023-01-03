@@ -94,7 +94,7 @@ struct SectionScrollView: View{
             
             ScrollView(.horizontal) {
                 HStack() {
-                    ForEach(productStore.products, id: \.itemUid) { product in
+                    ForEach(productStore.products, id: \.price) { product in
                         Button(action: {
                             
                         }) {

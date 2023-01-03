@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeView: View {
     @State var target: ItemInfo = ItemInfo(itemUid: "", storeId: "", itemName: "", itemCategory: "", itemAmount: 0, itemAllOption: ItemOptions(itemOptions: ["":[""]]), itemImage: [""], price: 0)
     
-    @State private var isVideoShowing: Bool = false
+    @State private var isDetailShowing: Bool = false
     @State private var isPurchaseShowing: Bool = false
     
     
@@ -22,7 +22,7 @@ struct HomeView: View {
             VStack(alignment: .leading) {
                 
                 ScrollView{
-                    SectionScrollView(productStore: productStore, target: $target, title: "현재 가장 찌릿한 전자 제품")
+                    SectionScrollView(productStore: productStore, target: $target, isDetailShowing: $isDetailShowing, title: "현재 가장 찌릿한 전자 제품")
                     //                        SectionScrollView(target: $target, title: "최신 노트북")
                     //                        SectionScrollView(target: $target, title: "동훈's Pick 노트북")
                     //SectionScrollView2(productStore: productStore, target: $target)
@@ -44,7 +44,7 @@ struct HomeView: View {
 //                                } label: {
 //                                    Text("구매하기")
 //                                }
-//                                
+//
 //                                Button {
 //                                    print("장바구니")
 //                                } label: {
@@ -56,9 +56,7 @@ struct HomeView: View {
 //                                } label: {
 //                                    Text("영상보기")
 //                                }
-//                                .sheet(isPresented: $isVideoShowing) {
-//                                    DetailView()
-//                                }
+                                
 //                                .sheet(isPresented: $isPurchaseShowing) {
 //                                    PurchaseView(target: $target)
 //                                }
@@ -66,8 +64,11 @@ struct HomeView: View {
 //                        }
 //                        Spacer()
 //                    }
-//                    
+//
 //                }
+            }
+            .sheet(isPresented: $isDetailShowing) {
+                DetailView(product: $target)
             }
             .padding(.leading, 50)
             .onAppear{
@@ -82,6 +83,7 @@ struct SectionScrollView: View{
     @ObservedObject var productStore: ProductStore
     
     @Binding var target: ItemInfo
+    @Binding var isDetailShowing: Bool
     var title: String
     
     
@@ -94,7 +96,8 @@ struct SectionScrollView: View{
                     ForEach(productStore.products, id: \.itemUid) { product in
                         VStack {
                             Button(action: {
-                                
+                                target = product
+                                isDetailShowing.toggle()
                             }) {
                                 VStack {
                                     FocusableRectangle(target: $target, itemTarget: product)

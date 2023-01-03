@@ -9,18 +9,22 @@ import SwiftUI
 import AVKit
 
 struct DetailView: View {
+    @Binding var product: ItemInfo
     var player = AVPlayer(url: URL(string: "https://swiftanytime-content.s3.ap-south-1.amazonaws.com/SwiftUI-Beginner/Video-Player/iMacAdvertisement.mp4")!)
     
     var body: some View {
-        VideoPlayer(player: player)
-            .edgesIgnoringSafeArea(.all)
-            .frame(width: .infinity, height: .infinity, alignment: .center)
-            .onAppear {
-                addObserver() // 1
-            }
-            .onDisappear {
-                removeObserver() // 2
-            }
+        HStack {
+            VideoPlayer(player: player)
+                .edgesIgnoringSafeArea(.all)
+                .frame(width: .infinity, height: .infinity, alignment: .center)
+                .onAppear {
+                    addObserver() // 1
+                }
+                .onDisappear {
+                    removeObserver() // 2
+                }
+            Text("\(product.itemName)")
+        }
     }
     
     func addObserver() {
@@ -41,8 +45,3 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailView()
-    }
-}

@@ -57,9 +57,7 @@ struct HomeView: View {
 //                                    Text("영상보기")
 //                                }
                                 
-//                                .sheet(isPresented: $isPurchaseShowing) {
-//                                    PurchaseView(target: $target)
-//                                }
+
 //                            }
 //                        }
 //                        Spacer()

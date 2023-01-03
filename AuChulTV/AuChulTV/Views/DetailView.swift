@@ -9,6 +9,7 @@ import SwiftUI
 import AVKit
 
 struct DetailView: View {
+    @State var isShowingPurchase: Bool = false
     @Binding var product: ItemInfo
     var player = AVPlayer(url: URL(string: "https://swiftanytime-content.s3.ap-south-1.amazonaws.com/SwiftUI-Beginner/Video-Player/iMacAdvertisement.mp4")!)
     
@@ -23,7 +24,22 @@ struct DetailView: View {
                 .onDisappear {
                     removeObserver() // 2
                 }
-            Text("\(product.itemName)")
+            VStack {
+                Text("\(product.itemName)")
+                    .font(.title)
+                Text("\(Int(product.price)) 원")
+                    .font(.subheadline)
+                Button {
+                    isShowingPurchase.toggle()
+                    print("item name: \(product.itemName)")
+                } label: {
+                    Text("구매하기")
+                }
+            }
+
+        }
+        .sheet(isPresented: $isShowingPurchase) {
+            PurchaseView(target: $product)
         }
     }
     

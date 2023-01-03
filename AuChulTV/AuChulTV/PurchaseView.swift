@@ -20,7 +20,7 @@ struct PurchaseView: View {
             Text("\(target.NotebookTitles)에 관심이 있으신가요?")
                 .font(.title3)
                 .bold()
-            Text("제품을 구입하시려면, 아래 QR 코드를 인식시켜 주세요.")
+            Text("아래 QR을 인식하면 구매 가능한 모바일 앱으로 이동합니다.")
                 .font(.subheadline)
             Image(uiImage: UIImage(data: getQRCodeDate(text: target.NotebookTitles)!)!)
                 .resizable()

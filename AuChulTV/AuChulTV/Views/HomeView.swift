@@ -62,7 +62,7 @@ struct HomeView: View {
                     
                     
                     ScrollView{
-                        SectionScrollView(productStore: productStore, target: $target, title: "현재 가장 HOT한 노트북")
+                        SectionScrollView(productStore: productStore, target: $target, title: "현재 가장 찌릿한 전자 제품")
                         //                        SectionScrollView(target: $target, title: "최신 노트북")
                         //                        SectionScrollView(target: $target, title: "동훈's Pick 노트북")
                     }

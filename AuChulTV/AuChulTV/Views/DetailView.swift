@@ -7,11 +7,14 @@
 
 import SwiftUI
 import AVKit
+import CoreImage.CIFilterBuiltins
 
 struct DetailView: View {
-    @State var isShowingPurchase: Bool = false
     @Binding var product: ItemInfo
     var player = AVPlayer(url: URL(string: "https://swiftanytime-content.s3.ap-south-1.amazonaws.com/SwiftUI-Beginner/Video-Player/iMacAdvertisement.mp4")!)
+    let context = CIContext()
+    let filter = CIFilter.qrCodeGenerator()
+    
     
     var body: some View {
         HStack {
@@ -30,17 +33,14 @@ struct DetailView: View {
                     .font(.title)
                 Text("\(Int(product.price)) 원")
                     .font(.subheadline)
-                Button {
-                    isShowingPurchase.toggle()
-                    print("item name: \(product.itemName)")
-                } label: {
-                    Text("구매하기")
-                }
+                    .padding(.bottom, 20)
+                Text("아래 QR을 인식하면 구매 가능한 모바일 앱으로 이동합니다.")
+                    .font(.subheadline)
+                Image(uiImage: UIImage(data: getQRCodeDate(text: product.itemName)!)!)
+                    .resizable()
+                    .frame(width: 300, height: 300)
             }
 
-        }
-        .sheet(isPresented: $isShowingPurchase) {
-            PurchaseView(target: $product)
         }
     }
     
@@ -59,6 +59,17 @@ struct DetailView: View {
                                                   name: .AVPlayerItemDidPlayToEndTime,
                                                   object: nil)
         
+    }
+    
+    func getQRCodeDate(text: String) -> Data? {
+        guard let filter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
+        let data = text.data(using: .ascii, allowLossyConversion: false)
+        filter.setValue(data, forKey: "inputMessage")
+        guard let ciimage = filter.outputImage else { return nil }
+        let transform = CGAffineTransform(scaleX: 10, y: 10)
+        let scaledCIImage = ciimage.transformed(by: transform)
+        let uiimage = UIImage(ciImage: scaledCIImage)
+        return uiimage.pngData()!
     }
 }
 

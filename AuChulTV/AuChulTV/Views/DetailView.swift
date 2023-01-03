@@ -20,6 +20,7 @@ struct DetailView: View {
                 .frame(width: .infinity, height: .infinity, alignment: .center)
                 .onAppear {
                     addObserver() // 1
+                    player.play() // 5
                 }
                 .onDisappear {
                     removeObserver() // 2

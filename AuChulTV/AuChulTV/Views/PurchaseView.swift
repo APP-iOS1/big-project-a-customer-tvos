@@ -9,7 +9,7 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct PurchaseView: View {
-    @Binding var target: NotebookItem
+    @Binding var target: ItemInfo
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     
@@ -17,12 +17,12 @@ struct PurchaseView: View {
     var body: some View {
         VStack {
             
-            Text("\(target.NotebookTitles)에 관심이 있으신가요?")
+            Text("\(target.itemName)에 관심이 있으신가요?")
                 .font(.title3)
                 .bold()
             Text("아래 QR을 인식하면 구매 가능한 모바일 앱으로 이동합니다.")
                 .font(.subheadline)
-            Image(uiImage: UIImage(data: getQRCodeDate(text: target.NotebookTitles)!)!)
+            Image(uiImage: UIImage(data: getQRCodeDate(text: target.itemName)!)!)
                 .resizable()
                 .frame(width: 600, height: 600)
         }

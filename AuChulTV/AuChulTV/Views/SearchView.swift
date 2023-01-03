@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var target: NotebookItem = NotebookItems[0]
+    @State var target: ItemInfo = ItemInfo(itemUid: "", storeId: "", itemName: "", itemCategory: "", itemAmount: 0, itemAllOption: ItemOptions(itemOptions: ["":[""]]), itemImage: [""], price: 0)
     @State var search: String = "Search"
+    
+    
+    @StateObject var productStore: ProductStore = ProductStore()
+    
+    
+    
     var body: some View {
         ScrollView(.horizontal) {
             HStack() {
-                ForEach(NotebookItems) { item in
+                ForEach(productStore.products, id: \.itemUid) { item in
                     Button(action: {
                         
                     }) {
@@ -27,8 +33,8 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
-}
+//struct SearchView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchView()
+//    }
+//}

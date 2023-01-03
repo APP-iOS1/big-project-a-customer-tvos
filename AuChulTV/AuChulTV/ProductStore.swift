@@ -40,8 +40,6 @@ class ProductStore: ObservableObject {
                         let product: ItemInfo = ItemInfo(itemUid: id, storeId: "", itemName: itemName, itemCategory: itemCategory, itemAmount: Int(itemAmount) ?? 0, itemAllOption: ItemOptions(itemOptions: ["":[""]]), itemImage: [itemImage], price: Double(price) ?? 0)
                         
                         self.products.append(product)
-                        
-                        
                     }
                     
                 }

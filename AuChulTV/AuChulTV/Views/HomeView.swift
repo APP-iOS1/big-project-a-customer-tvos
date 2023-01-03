@@ -60,11 +60,6 @@ struct HomeView: View {
                         Spacer()
                     }
                     
-                    List{
-                        ForEach(productStore.products, id: \.itemName) { product in
-                            Text("\(product.itemUid)")
-                        }
-                    }
                     
                     ScrollView{
                         SectionScrollView(productStore: productStore, target: $target, title: "현재 가장 HOT한 노트북")
@@ -91,6 +86,7 @@ struct SectionScrollView: View{
     
     var body: some View{
         VStack(alignment: .leading) {
+            Text("\(title)")
             
             ScrollView(.horizontal) {
                 HStack() {
@@ -102,7 +98,7 @@ struct SectionScrollView: View{
                             
                         }.buttonStyle(CardButtonStyle())
                     }
-                }.padding(40)
+                }
             }
         }
     }
@@ -111,30 +107,47 @@ struct SectionScrollView: View{
 struct FocusableRectangle: View {
     @Environment(\.isFocused) var isFocused: Bool
     @State var color = Color.blue
-    @State var defaultWidth: Double = 600
-    @State var defaultHeight: Double = 400
+    @State var defaultWidth: Double = 300
+    @State var defaultHeight: Double = 200
     
     @Binding var target: ItemInfo
     var itemTarget: ItemInfo
     
     var body: some View {
-        
-        Text("\(itemTarget.itemName)")
-            .font(.title3)
-        
-        Image("\(itemTarget.itemImage.first!)")
-            .resizable()
-            .renderingMode(.original)
-            .aspectRatio(contentMode: .fill)
-            .frame(width: defaultWidth, height: defaultHeight)
-            .clipped()
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .onChange(of: isFocused, perform: { value in
-                if value {
-                    target = itemTarget
-                }
-            })
+//
+//        Text("\(itemTarget.itemName)")
+//            .font(.title3)
+//
+        AsyncImage(url: URL(string: itemTarget.itemImage.first!)) { image in
+            image
+                .resizable()
+                .renderingMode(.original)
+                .aspectRatio(contentMode: .fill)
+        } placeholder: {
+            ProgressView()
+        }
+        .frame(width: defaultWidth, height: defaultHeight)
+        .clipped()
+        .cornerRadius(10)
+        .shadow(radius: 5)
+        .onChange(of: isFocused, perform: { value in
+            if value {
+                target = itemTarget
+            }
+        })
+//        Image("\(itemTarget.itemImage.first!)")
+//            .resizable()
+//            .renderingMode(.original)
+//            .aspectRatio(contentMode: .fill)
+//            .frame(width: defaultWidth, height: defaultHeight)
+//            .clipped()
+//            .cornerRadius(10)
+//            .shadow(radius: 5)
+//            .onChange(of: isFocused, perform: { value in
+//                if value {
+//                    target = itemTarget
+//                }
+//            })
     }
 }
 
